@@ -33,11 +33,9 @@ USE [DWH];
 GO
 
 -- Create Schemas
-CREATE SCHEMA [bronze];
-GO
-CREATE SCHEMA [silver];
-GO
-CREATE SCHEMA [gold];
+IF SCHEMA_ID('bronze') IS NULL EXEC('CREATE SCHEMA [bronze]');
+IF SCHEMA_ID('silver') IS NULL EXEC('CREATE SCHEMA [silver]');
+IF SCHEMA_ID('gold')   IS NULL EXEC('CREATE SCHEMA [gold]');
 GO
 
 
