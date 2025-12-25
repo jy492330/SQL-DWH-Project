@@ -48,10 +48,14 @@ ________________________________________________________________________________
 USE master;
 GO
 
+-- IF DB_ID('DWH') IS NULL
+-- BEGIN
+--     CREATE DATABASE [DWH];
+-- END;
+-- GO
+
 IF DB_ID('DWH') IS NULL
-BEGIN
     CREATE DATABASE [DWH];
-END;
 GO
 
 -- Switch to DB
