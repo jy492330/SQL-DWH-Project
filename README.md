@@ -1,6 +1,6 @@
 # SQL Data Warehouse with Medallion Architecture (SQL Server)
 
-A modern SQL Server data warehouse project built with a **Medallion architecture** (**Bronze → Silver → Gold**) to consolidate sales data from **ERP + CRM** source systems and deliver **analytics-ready** datasets for reporting and insights. :contentReference[oaicite:0]{index=0}
+A modern SQL Server data warehouse project built with a **Medallion architecture** (**Bronze → Silver → Gold**) to consolidate sales data from **ERP + CRM** source systems and deliver **analytics-ready** datasets for reporting and insights.
 
 ---
 
@@ -9,50 +9,50 @@ A modern SQL Server data warehouse project built with a **Medallion architecture
 - **Ingests** raw **CSV** extracts from **ERP** and **CRM** source systems
 - Loads raw data into a **Bronze** landing zone (traceability + debugging)
 - Cleans and standardizes data in a **Silver** layer (ready for analysis)
-- Publishes **Gold** reporting objects (views) with business logic and analytics models :contentReference[oaicite:1]{index=1}
+- Publishes **Gold** reporting objects (views) with business logic and analytics models
 
 ---
 
 ## High-level architecture (Bronze / Silver / Gold)
 
 ### Bronze layer (raw, as-is)
-- **Source format:** CSV files (files-in-folder interface) :contentReference[oaicite:2]{index=2}  
-- **Object type:** Tables :contentReference[oaicite:3]{index=3}  
-- **Load method:** Batch processing, **full load (TRUNCATE + INSERT)** :contentReference[oaicite:4]{index=4}  
-- **Transformations:** None (raw as-is) :contentReference[oaicite:5]{index=5}  
+- **Source format:** CSV files (files-in-folder interface)
+- **Object type:** Tables 
+- **Load method:** Batch processing, **full load (TRUNCATE + INSERT)**  
+- **Transformations:** None (raw as-is)
 
 ### Silver layer (clean + standardized)
-- **Object type:** Tables :contentReference[oaicite:6]{index=6}  
-- **Load method:** Batch processing, **full load (TRUNCATE + INSERT)** :contentReference[oaicite:7]{index=7}  
+- **Object type:** Tables  
+- **Load method:** Batch processing, **full load (TRUNCATE + INSERT)**  
 - **Transformations include:**  
   - Data cleansing  
   - Data standardization  
   - Data normalization  
   - Data enrichment  
-  - Derived columns :contentReference[oaicite:8]{index=8}  
+  - Derived columns 
 
 ### Gold layer (business-ready, reporting)
 
-In this project, the **Gold layer is implemented as SQL views** (no physical load step). It is where the warehouse becomes **business-ready** for BI/reporting and ad-hoc analysis. :contentReference[oaicite:0]{index=0}
+In this project, the **Gold layer is implemented as SQL views** (no physical load step). It is where the warehouse becomes **business-ready** for BI/reporting and ad-hoc analysis. 
 
 **Gold layer characteristics**
-- **Object type:** Views (semantic/reporting layer) :contentReference[oaicite:1]{index=1}
-- **Load method:** None (views) :contentReference[oaicite:2]{index=2}
-- **Transformations:** data integration, aggregations, business logic :contentReference[oaicite:3]{index=3}
+- **Object type:** Views (semantic/reporting layer) 
+- **Load method:** None (views)
+- **Transformations:** data integration, aggregations, business logic 
 
 #### Gold data models (3 supported patterns)
 
-Your Gold layer is designed to support **three different data modeling outputs** (not just star schema): :contentReference[oaicite:4]{index=4}
+Your Gold layer is designed to support **three different data modeling outputs**: 
 
 ##### Option A — Star schema (classic)
-This is the **diagram you already created**.
+**Data Flow Diagram**
 
 **Gold objects**
 - `dim_customers`
 - `dim_products`
-- `fact_sales` :contentReference[oaicite:5]{index=5}
+- `fact_sales` 
 
-This pattern keeps dimensions separate and connects them to a central fact table (standard star schema build). :contentReference[oaicite:6]{index=6}
+This pattern keeps dimensions separate and connects them to a central fact table (standard star schema build). 
 
 ##### Option B — Flat / Wide table (denormalized)
 This option produces **one wide dataset** where customer + product attributes are already joined onto each sales row.
@@ -67,8 +67,6 @@ Typical Gold object examples (names are just examples)
   and `silver.crm_prd_info` (+ ERP category tables as needed)
 - Output **one wide Gold object** for BI tools and ad-hoc analysis
 
-> Note: You have **not created the Option B diagram yet** (only Option A is diagrammed today).
-
 ##### Option C — Aggregated tables (summary marts)
 This option produces **pre-aggregated reporting objects** for faster dashboards (for example: by day/week/month, by product, by customer segment).
 
@@ -77,7 +75,7 @@ Typical Gold object examples (names are just examples)
 - `gold.vw_sales_monthly_by_product`
 - `gold.vw_customer_summary`
 
-These objects apply grouping/aggregation logic in Gold (still typically as views). :contentReference[oaicite:7]{index=7}
+These objects apply grouping/aggregation logic in Gold (still typically as views).
 
 ---
 
@@ -85,25 +83,25 @@ These objects apply grouping/aggregation logic in Gold (still typically as views
 
 This project integrates two source systems:
 - **CRM** (CSV extracts)
-- **ERP** (CSV extracts) :contentReference[oaicite:13]{index=13}
+- **ERP** (CSV extracts) 
 
 ---
 
 ## Data flow (tables by layer)
 
-From the data flow diagram, the pipeline follows this structure: :contentReference[oaicite:14]{index=14}
+From the data flow diagram, the pipeline follows this structure: 
 
 ### Bronze tables
 - CRM: `crm_sales_details`, `crm_cust_info`, `crm_prd_info`
-- ERP: `erp_cust_az12`, `erp_loc_a101`, `erp_px_cat_g1v2` :contentReference[oaicite:15]{index=15}
+- ERP: `erp_cust_az12`, `erp_loc_a101`, `erp_px_cat_g1v2` 
 
 ### Silver tables
 - `crm_sales_details`, `crm_cust_info`, `crm_prd_info`
-- `erp_cust_az12`, `erp_loc_a101`, `erp_px_cat_g1v2` :contentReference[oaicite:16]{index=16}
+- `erp_cust_az12`, `erp_loc_a101`, `erp_px_cat_g1v2`
 
 ### Gold model (star schema)
 - Dimensions: `dim_customers`, `dim_products`
-- Fact: `fact_sales` :contentReference[oaicite:17]{index=17}
+- Fact: `fact_sales` 
 
 ---
 
@@ -112,7 +110,7 @@ From the data flow diagram, the pipeline follows this structure: :contentReferen
 The Gold layer is designed to support SQL-based analytics and reporting, including:
 - Customer behavior insights
 - Product performance analysis
-- Sales trend reporting :contentReference[oaicite:18]{index=18}
+- Sales trend reporting 
 
 ---
 
@@ -150,7 +148,7 @@ Typical layout (adjust to match your repo if needed):
 ## Notes on design choices
 
 - Bronze and Silver use **full refresh** loads (**TRUNCATE + INSERT**) to keep the warehouse aligned with the latest source extracts.   
-- Gold uses **views** (no physical load) to keep reporting logic centralized and easy to change. :contentReference[oaicite:20]{index=20}  
+- Gold uses **views** (no physical load) to keep reporting logic centralized and easy to change. 
 
 ---
 
