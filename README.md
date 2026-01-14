@@ -13,7 +13,8 @@ A modern SQL Server data warehouse project built with a **Medallion architecture
 
 ---
 
-## High-level architecture (Bronze / Silver / Gold)
+## High-level Data Architecture (Bronze / Silver / Gold)
+![High Level Architecture](https://github.com/jy492330/SQL-DWH-Project/blob/main/docs/diagrams/High%20Level%20Data%20Architecture.png)
 
 ### Bronze layer (raw, as-is)
 - **Source format:** CSV files (files-in-folder interface)
@@ -44,7 +45,7 @@ In this project, the **Gold layer is implemented as SQL views** (no physical loa
 
 Your Gold layer is designed to support **three different data modeling outputs**: 
 
-##### Option A — Star schema (classic)
+##### Option A — Star schema 
 **Data Flow Diagram (Option A: Star Schema)**
 ![Data Flow Diagram - Star Schema](https://github.com/jy492330/SQL-DWH-Project/blob/main/docs/diagrams/Data%20Flow%20Diagram%20(Star%20Schema).png)
 
