@@ -1,9 +1,8 @@
 /*
-==========================================================================
+================================================================================
 Stored Procedure: Load Silver Layer (Bronze -> Silver)
-==========================================================================
-This stored procedure performs the ETL (Extract, Transform, Load) process
-to populate tables from the 'bronze' to the 'silver' schema.
+================================================================================
+This stored procedure transforms and loads data from Bronze into Silver schema.
 
 Performed actions:
 - Truncates Silver tables.
@@ -11,7 +10,7 @@ Performed actions:
 
 Usage Example (This command should be implemented in a separate query in SSMS):
     EXEC silver.load_silver; 
-==========================================================================
+================================================================================
 */
 
 CREATE OR ALTER PROCEDURE silver.load_silver AS
