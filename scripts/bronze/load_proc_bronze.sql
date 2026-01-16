@@ -1,6 +1,6 @@
 /*
 ==========================================================================
- Stored Procedure: Load Bronze Layer (Source -> Landing Zone)
+Stored Procedure: Load Bronze Layer (Source -> Landing Zone)
 ==========================================================================
 This stored procedure loads data into the 'bronze' schema (landing zone)
 from external CSV files. It performs the following load actions to ensure 
