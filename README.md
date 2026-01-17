@@ -87,8 +87,9 @@ These objects apply grouping/aggregation logic in Gold (still typically as views
 
 This project integrates two source systems:
 - **CRM** (CSV extracts)
-- **ERP** (CSV extracts) 
-
+- **ERP** (CSV extracts)
+  
+![Data Integration Diagram](https://github.com/jy492330/SQL-DWH-Project/blob/main/docs/diagrams/Integration_model.png)
 ---
 
 ## Data flow (tables by layer)
