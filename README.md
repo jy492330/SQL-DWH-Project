@@ -71,7 +71,7 @@ Typical Gold object examples (names are just examples)
   and `silver.crm_prd_info` (+ ERP category tables as needed)
 - Output **one wide Gold object** for BI tools and ad-hoc analysis
 
-##### Option C — Aggregated tables (summary marts)
+#### Option C — Aggregated tables (summary marts)
 This option produces **pre-aggregated reporting objects** for faster dashboards (for example: by day/week/month, by product, by customer segment).
 
 Typical Gold object examples (names are just examples)
