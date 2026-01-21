@@ -68,9 +68,9 @@ Typical Gold object examples
 - or `gold.sales_wide` (table)
 
 **Build Options**
-- Method 1: (2 LEFT JOINs in Gold):
+- **Method 1**: (2 LEFT JOINs in Gold):
   Join `silver.crm_sales_details` with `gold.dim_customers` and `gold.dim_products`
-- Method 2: (5 LEFT JOINs from Silver)
+- **Method 2**: (5 LEFT JOINs from Silver)
   Join `silver.crm_sales_details`
   with `silver.crm_cust_info` (+ ERP customer/location tables as needed)
   and `silver.crm_prd_info` (+ ERP category tables as needed)
