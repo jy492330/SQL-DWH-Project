@@ -44,10 +44,10 @@ In this project, the **Gold layer is implemented as SQL views** (no physical loa
 #### Gold data models (3 supported patterns)
 
 Your Gold layer is designed to support **three different data modeling outputs**: 
+![Data Flow Diagram - Star + Flat Schema](https://github.com/jy492330/SQL-DWH-Medallion-Architecture/blob/main/docs/diagrams/Data_Flow_Diagram%20(Star%20%2B%20Flat%20Schema).png)
 
 #### Option A — Star schema 
 **Data Flow Diagram (Option A: Star Schema)**
-![Data Flow Diagram - Star + Flat Schema]()
 
 **Gold objects**
 - `dim_customers`
