@@ -56,14 +56,15 @@ Your Gold layer is designed to support **three different data modeling outputs**
 
 This pattern keeps dimensions separate and connects them to a central fact table (standard star schema build). 
 
-#### Option B — Flat / Wide table (denormalized)
+#### Option B — Flat / Wide Schema (denormalized)
 **Data Flow Diagram (Option B: Flat Table)**
 
 This option produces **one wide dataset** where customer + product attributes are already joined onto each sales row.
+**Flat Schema = “Star schema flattened” (fact + dims joined in one for BI convenience)**
 
-Typical Gold object examples (names are just examples)
+Typical Gold object examples 
 - `gold.vw_sales_wide` (view)
-- or `gold.sales_wide` (table, if you ever choose to materialize it)
+- or `gold.sales_wide` 
 
 **Conceptual build**
 - Join `silver.crm_sales_details`
@@ -72,9 +73,9 @@ Typical Gold object examples (names are just examples)
 - Output **one wide Gold object** for BI tools and ad-hoc analysis
 
 #### Option C — Aggregated tables (summary marts)
-This option produces **pre-aggregated reporting objects** for faster dashboards (for example: by day/week/month, by product, by customer segment).
+This option produces **pre-aggregated reporting objects** for faster dashboards (for example: by day/week/month, by product category, by customer segment, by country).
 
-Typical Gold object examples (names are just examples)
+Typical Gold object examples 
 - `gold.vw_sales_daily`
 - `gold.vw_sales_monthly_by_product`
 - `gold.vw_customer_summary`
