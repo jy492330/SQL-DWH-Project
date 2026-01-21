@@ -50,9 +50,9 @@ Your Gold layer is designed to support **three different data modeling outputs**
 **Data Flow Diagram (Option A: Star Schema)**
 
 **Gold objects**
-- `dim_customers`
-- `dim_products`
-- `fact_sales` 
+- `gold.dim_customers`
+- `gold.dim_products`
+- `gold.fact_sales` 
 
 This pattern keeps dimensions separate and connects them to a central fact table (standard star schema build). 
 
@@ -61,14 +61,17 @@ This pattern keeps dimensions separate and connects them to a central fact table
 
 This option produces **one wide dataset** where customer + product attributes are already joined onto each sales row.  
  
-**Flat Schema = “Star schema flattened” (fact + dims joined in one for BI convenience)**
+**Flat Schema = “Star schema flattened” (fact + dims joined in one for BI convenience), excluding duplicated surrogate/dim keys**
 
 Typical Gold object examples 
 - `gold.vw_sales_wide` (view)
 - or `gold.sales_wide` (table)
 
-**Conceptual build**
-- Join `silver.crm_sales_details`
+**Build Options**
+- Method 1: (2 LEFT JOINs in Gold):
+  Join `silver.crm_sales_details` with `gold.dim_customers` and `gold.dim_products`
+- Method 2: (5 LEFT JOINs from Silver)
+  Join `silver.crm_sales_details`
   with `silver.crm_cust_info` (+ ERP customer/location tables as needed)
   and `silver.crm_prd_info` (+ ERP category tables as needed)
 - Output **one wide Gold object** for BI tools and ad-hoc analysis
