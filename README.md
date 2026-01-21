@@ -65,7 +65,7 @@ This option produces **one wide dataset** where customer + product attributes ar
 
 Typical Gold object examples 
 - `gold.vw_sales_wide` (view)
-- or `gold.sales_wide` 
+- or `gold.sales_wide` (table)
 
 **Conceptual build**
 - Join `silver.crm_sales_details`
