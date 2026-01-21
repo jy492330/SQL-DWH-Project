@@ -3,7 +3,7 @@
 DDL Script: Create Gold Views
 =========================================================================================
 This script creates view objects for the Gold layer in the Data Warehouse.
-The Gold layer represents the final dimension and fact tables (Star Schema)
+The Gold layer represents the final dimension and fact views (Star Schema)
 
 Each view performs transformations and integrates data from the Silver layer
 to produce a clean, enriched and business-ready dataset.
