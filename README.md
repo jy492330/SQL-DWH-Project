@@ -57,11 +57,11 @@ Your Gold layer is designed to support **three different data modeling outputs**
 This pattern keeps dimensions separate and connects them to a central fact table (standard star schema build). 
 
 #### Option B — Flat / Wide Schema (denormalized)
-**Data Flow Diagram (Option B: Flat Schema (OBT)**
+**Data Flow Diagram (Option B: Flat Schema - OBT)**
 
 This option produces **one wide dataset** where customer + product attributes are already joined onto each sales row.  
  
-**Flat Schema = “Star schema flattened” (fact + dims joined in one for BI convenience), excluding duplicated surrogate/dim keys**
+**Flat Schema = “Star schema flattened” (fact + dims joined in one for BI convenience) excluding duplicated surrogate/dim keys**
 
 Typical Gold object examples 
 - `gold.vw_sales_wide` (view)
