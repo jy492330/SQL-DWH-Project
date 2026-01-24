@@ -86,3 +86,34 @@ ON f.customer_key = c.customer_key
 LEFT JOIN gold.dim_products p
 ON f.product_key = p.product_key
 WHERE p.product_key IS NULL
+
+-- Quick check to get duplicate column names from joined flat gold view (v1)
+SELECT 
+name, 
+COUNT(*)
+FROM (
+	SELECT
+	name
+	FROM sys.dm_exec_describe_first_result_set(
+	'SELECT *
+	FROM gold.vw_sales_wide', NULL, 0
+	)
+) cte
+GROUP BY name
+HAVING COUNT(*) > 1
+
+-- Quick check to get duplicate column names from joined flat gold view (v2)
+FROM cte AS (
+	SELECT
+	name
+	FROM sys.dm_exec_describe_first_result_set(
+	'SELECT *
+	FROM gold.vw_sales_wide', NULL, 0
+	)
+)
+SELECT 
+name,
+COUNT(*) AS occurrences
+FROM cte
+GROUP BY name
+HAVING COUNT(*) > 1
