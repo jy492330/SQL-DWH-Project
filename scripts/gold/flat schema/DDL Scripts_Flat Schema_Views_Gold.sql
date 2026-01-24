@@ -13,6 +13,10 @@ This view can be queried directly for analytics and BI reporting.
 
 CREATE OR ALTER VIEW gold.vw_sales_wide AS
 SELECT
+    -- surrogate/dimension keys
+    f.customer_key,
+    f.product_key,
+    
     -- Fact columns
     f.order_number,
     f.order_date,
@@ -21,10 +25,6 @@ SELECT
     f.sales_amount,
     f.quantity,
     f.price,
-
-    -- Keep surrogate/dimension keys ONCE 
-    f.customer_key,
-    f.product_key,
 
     -- Customer attributes (exclude c.customer_key)
     c.customer_id,
