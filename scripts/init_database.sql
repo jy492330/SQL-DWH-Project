@@ -32,7 +32,7 @@ GO
 USE [DWH];
 GO
 
--- Create Schemas
+-- Create the Schemas
 IF SCHEMA_ID('bronze') IS NULL EXEC('CREATE SCHEMA [bronze]');
 IF SCHEMA_ID('silver') IS NULL EXEC('CREATE SCHEMA [silver]');
 IF SCHEMA_ID('gold')   IS NULL EXEC('CREATE SCHEMA [gold]');
@@ -58,7 +58,6 @@ IF DB_ID('DWH') IS NULL
     CREATE DATABASE [DWH];
 GO
 
--- Switch to DB
 USE [DWH];
 GO
 
@@ -73,8 +72,6 @@ GO
 ________________________________________________________________________________________________
 “sanity check” if the current query tab is connected to (or set to run in) the master database
 ________________________________________________________________________________________________
-
-SSMS keeps the “current database” per query window/tab, not globally for all queries in SSMS.
 */
   
 SELECT DB_NAME() AS current_db;
